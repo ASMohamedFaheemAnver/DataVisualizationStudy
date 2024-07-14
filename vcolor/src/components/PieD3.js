@@ -1,3 +1,4 @@
+import "./styles.css";
 import colors from "../cssNamedColors.csv";
 import { csv, pie, arc } from "d3";
 import { useEffect, useState } from "react";
@@ -26,7 +27,17 @@ function Pied3() {
           })(data)
           .map((d, i) => {
             const color = d?.data?.["RGB hex value"];
-            return <path key={i} fill={color} d={piArc(d)}></path>;
+            return (
+              <path
+                key={i}
+                fill={color}
+                d={piArc(d)}
+                onClick={() => {
+                  console.log(color);
+                }}
+                className="colors"
+              ></path>
+            );
           })}
       </g>
     </svg>
