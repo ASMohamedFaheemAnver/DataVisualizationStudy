@@ -1,8 +1,14 @@
 import "./App.css";
-import Scratch from "./components/Scratch";
+import Pied3 from "./components/PieD3";
+import PieScratch from "./components/PieScratch";
 
 function App() {
-  return <Scratch />;
+  return (
+    <>
+      <PieScratch />
+      <Pied3 />
+    </>
+  );
 }
 
 export default App;
