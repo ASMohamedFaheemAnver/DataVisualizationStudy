@@ -29,12 +29,15 @@ function ScatterPlot() {
 
   const xScale = scaleLinear()
     // .domain([min(data, xValue), max(data, xValue)]) // Can use extent for this case
+    // .domain([0, max(data, xValue)]) // If u want the chart to start from 0
     .domain(extent(data, xValue))
     .range([0, innerWidth])
     .nice(); // To prevent mark overflow/put nice number range for x
 
   const yScale = scaleLinear()
     .domain(extent(data, yValue))
+    // .domain([0, max(data, yValue)]) // Can use extent for this case but I want a gap between points
+    // .domain([min(data, yValue) - 1, max(data, yValue) + 1]) // Can use extent for this case but I want a gap between points
     // .range([0, innerHeight]); // Divide 0 - height according to the domain country name
     .range([innerHeight, 0]); // invert the values
 
