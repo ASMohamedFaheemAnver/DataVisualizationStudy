@@ -1,0 +1,23 @@
+.tick line {
+  stroke: #c0c0bb;
+}
+
+.tick text {
+  fill: #635f5d;
+  font-size: 12px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.mark {
+  /* fill: #137880; */
+}
+
+.axis-label {
+  font-size: 2.5em;
+  fill: gray;
+}
+
+.legend-label {
+  font-size: 2.5em;
+  fill: gray;
+}
