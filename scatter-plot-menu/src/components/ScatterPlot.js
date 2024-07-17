@@ -37,8 +37,12 @@ function ScatterPlot() {
 
   const xValue = (d) => d?.[selectedXValue];
   const yValue = (d) => d?.[selectedYValue];
-
+  const [hoveredOver, setHoveredOver] = useState("");
   const colorValue = (d) => d?.species;
+
+  const filteredData = hoveredOver
+    ? data.filter((d) => colorValue(d) === hoveredOver)
+    : data;
 
   const xScale = scaleLinear()
     // .domain([min(data, xValue), max(data, xValue)]) // Can use extent for this case
@@ -124,10 +128,14 @@ function ScatterPlot() {
             <text className="legend-label" style={{ textAnchor: "middle" }}>
               {colorLegendLabel}
             </text>
-            <ColorLegend colorScale={colorScale} />
+            <ColorLegend
+              colorScale={colorScale}
+              setHoveredOver={setHoveredOver}
+            />
           </g>
           <Marks
-            data={data}
+            // data={data}
+            data={filteredData}
             xScale={xScale}
             yScale={yScale}
             yValue={yValue}
@@ -136,6 +144,7 @@ function ScatterPlot() {
             circleRadius={circleRadius}
             colorScale={colorScale}
             colorValue={colorValue}
+            hoveredOver={hoveredOver}
           />
         </g>
       </svg>

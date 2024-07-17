@@ -21,3 +21,7 @@
   font-size: 2.5em;
   fill: gray;
 }
+
+.legend {
+  cursor: pointer;
+}
