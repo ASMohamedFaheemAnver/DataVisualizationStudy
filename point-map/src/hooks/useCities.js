@@ -8,6 +8,7 @@ export const useCities = () => {
     csv(cities, (row) => {
       row.lat = +row?.lat;
       row.lng = +row?.lng;
+      row.population = +row?.population;
       return row;
     })
       .then((cities) => {

@@ -3,7 +3,7 @@
 import { geoEqualEarth, geoNaturalEarth1, geoGraticule, geoPath } from "d3";
 
 // Ref: https://d3js.org/d3-geo/azimuthal#geoGnomonic
-export const Marks = ({ worldAtlas, cities }) => {
+export const Marks = ({ worldAtlas, cities, sizeScale, sizeValue }) => {
   const projection = geoNaturalEarth1();
   const path = geoPath(projection);
 
@@ -23,7 +23,7 @@ export const Marks = ({ worldAtlas, cities }) => {
       {cities?.map((city, i) => {
         const [x, y] = projection([city?.lng, city?.lat]);
         return (
-          <circle key={i} cx={x} cy={y} r={1}>
+          <circle key={i} cx={x} cy={y} r={sizeScale(sizeValue(city))}>
             <title style={{}}>{city?.city}</title>
           </circle>
         );
