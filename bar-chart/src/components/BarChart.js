@@ -16,7 +16,7 @@ import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
 import { Marks } from "./Marks";
 
-function LineChart() {
+function BarChart() {
   const width = 900;
   const height = 800;
   const margin = {
@@ -108,4 +108,4 @@ function LineChart() {
   );
 }
 
-export default LineChart;
+export default BarChart;

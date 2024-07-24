@@ -1,10 +1,10 @@
 import "./App.css";
-import BarChart from "./components/BarChart";
+import Map from "./components/Map";
 
 function App() {
   return (
     <>
-      <BarChart />
+      <Map />
     </>
   );
 }
