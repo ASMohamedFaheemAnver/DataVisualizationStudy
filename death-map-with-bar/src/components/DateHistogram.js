@@ -1,10 +1,12 @@
 import {
   bin,
+  brushX,
   extent,
   format,
   max,
   scaleLinear,
   scaleTime,
+  select,
   sum,
   timeFormat,
   timeMonths,
@@ -12,8 +14,9 @@ import {
 import { AxisBottom } from "./AxisBottom";
 import { AxisLeft } from "./AxisLeft";
 import { BarMarks } from "./BarMarks";
+import { useEffect, useRef } from "react";
 
-export const DateHistogram = ({ data, height, width }) => {
+export const DateHistogram = ({ data, height, width, setBrushExtend }) => {
   const margin = {
     top: 20,
     right: 50,
@@ -21,12 +24,32 @@ export const DateHistogram = ({ data, height, width }) => {
     left: 100 /* To make more room for label */,
   };
 
+  const brushRef = useRef(null);
+
   const innerHeight = height - margin.bottom - margin.top; // Room for labels/yaxis
   const innerWidth = width - margin.left - margin.right; // Room for labels/xaxis
   const xAxisLabel = "Date";
   const yAxisLabel = "Total death";
   const xValue = (d) => d?.date;
   const yValue = (d) => d?.death;
+
+  useEffect(() => {
+    if (brushRef.current) {
+      const brush = brushX().extent([
+        [0, 0], // Start point
+        [innerWidth, innerHeight], // End point
+      ]);
+      brush(select(brushRef.current));
+      brush.on("brush end", (e) => {
+        // const [brushStart, brushEnd] = e?.selection;
+        // const xActualStartValue = xScale.invert(brushStart);
+        // const xActualEndValue = xScale.invert(brushEnd);
+        // e?.selection?.map(xScale.invert) // Can be minimized like this
+
+        setBrushExtend?.(e?.selection?.map(xScale.invert));
+      });
+    }
+  }, [brushRef.current, innerHeight, innerWidth, setBrushExtend]);
 
   const xScale = scaleTime()
     // .domain([min(data, xValue), max(data, xValue)]) // Can use extent for this case
@@ -93,6 +116,7 @@ export const DateHistogram = ({ data, height, width }) => {
         tooltipFormat={(value) => format(",")(value)}
         innerHeight={innerHeight}
       />
+      <g ref={brushRef}></g>
     </g>
   );
 };
