@@ -24,9 +24,9 @@ export const Marks = ({
           >
             {/* Tooltip */}
             {/* If wanna customize the tooltip: https://stackoverflow.com/questions/10643426/how-to-add-a-tooltip-to-an-svg-graphic */}
-            <title style={{}}>{`Temperature : ${
+            <title style={{}}>{`${
               tooltipFormat ? tooltipFormat(d?.y) : d?.y
-            }C`}</title>
+            }`}</title>
           </rect>
         );
       })}

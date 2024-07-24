@@ -100,7 +100,7 @@ function LineChart() {
           binnedData={binnedData}
           xScale={xScale}
           yScale={yScale}
-          tooltipFormat={(value) => format(",.2r")(value)}
+          tooltipFormat={(value) => format(",")(value)}
           innerHeight={innerHeight}
         />
       </g>
