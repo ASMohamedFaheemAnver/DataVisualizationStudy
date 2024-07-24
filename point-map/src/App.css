@@ -1,0 +1,22 @@
+.marks .sphere {
+  fill: gray;
+  opacity: 0.1;
+}
+
+.marks .country {
+  fill: #c3c3c3;
+}
+
+.marks .interiors {
+  fill: none;
+  stroke: #c0c0bb;
+}
+
+.marks .graticule {
+  fill: none;
+  stroke: #979797;
+}
+
+circle {
+  fill: #137b80;
+}
