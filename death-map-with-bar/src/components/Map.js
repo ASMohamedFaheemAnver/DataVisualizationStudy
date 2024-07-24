@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useMissingMigrants } from "../hooks/useMissingMigrants";
 import { BubbleMap } from "./BubbleMap";
 import { DateHistogram } from "./DateHistogram";
@@ -10,15 +10,18 @@ function Map() {
   const dataHistogramSize = 0.25;
   const [brushExtend, setBrushExtend] = useState(null);
   const missingMigrants = useMissingMigrants();
-  if (!missingMigrants) return <p>Loading...</p>;
 
-  const filteredData = missingMigrants?.filter((migrant) => {
-    const date = migrant?.date;
-    if (brushExtend) {
-      return date > brushExtend?.[0] && date < brushExtend?.[1];
-    }
-    return true;
-  });
+  const filteredData = useMemo(() => {
+    return missingMigrants?.filter((migrant) => {
+      const date = migrant?.date;
+      if (brushExtend) {
+        return date > brushExtend?.[0] && date < brushExtend?.[1];
+      }
+      return true;
+    });
+  }, [brushExtend, missingMigrants]);
+
+  if (!missingMigrants) return <p>Loading...</p>;
 
   return (
     <svg width={width} height={height}>
