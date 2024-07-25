@@ -1,0 +1,30 @@
+/* .tick line {
+  stroke: #c0c0bb;
+} */
+
+.tick text {
+  fill: #635f5d;
+  font-size: 12px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.mark circle {
+  fill: #137880;
+}
+
+.mark path {
+  stroke: #137880;
+  stroke-width: 2px;
+  /* Ref: https://www.w3schools.com/graphics/svg_stroking.asp */
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.axis-label {
+  font-size: 2.5em;
+  fill: gray;
+}
+
+.marker-line {
+  stroke: black;
+  stroke-width: 2px;
+}
