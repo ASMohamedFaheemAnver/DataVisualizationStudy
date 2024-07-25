@@ -47,7 +47,8 @@ export const LineChart = ({ data, width, height }) => {
           return (
             <path
               key={i}
-              stroke={strokeColor}
+              // stroke={strokeColor}
+              stroke="black"
               d={lineGenerator(countryTimeSeries)}
             />
           );
